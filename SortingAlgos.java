@@ -21,14 +21,14 @@ public class SortingAlgos
 		int n = arr.length;
 		for(int i=0; i < n-1; i++)
 		{
-			int smallestIdx = i;       //starting of unsorted array at each iteration
-			for(int j = i+1; j < n; j++)
+			int smallestIdx = i;       //Considering sorted
+			for(int j = i+1; j < n; j++) // starting of unsorted
 			{
 				if(arr[j] < arr[smallestIdx]) smallestIdx = j;  // smallestIdx found
 			}
 			temp = arr[i];              // swap
 			arr[i] = arr[smallestIdx];  // smallest value goes to sorted part which is at ith Index which
-			arr[smallestIdx] = temp;    // considered to be start of unsorted array.
+			arr[smallestIdx] = temp;
 		}
 	}
 	static void bubbleSort(int[] arr)
