@@ -1,5 +1,48 @@
 public class SortingAlgos
 {
+	static void mergeSort(int[] arr, int left, int mid, int right)
+	{
+	    int[] mergedArr = new int[arr.length];  // Creating temporary array in which sort values are saved
+	    int firstArrIdx = left;
+	    int SecondArrIdx = mid + 1;
+	    int mergedArrIdx = left;
+	    
+	    while( firstArrIdx <= mid && SecondArrIdx <= right)
+	    {
+	        if( arr[firstArrIdx] <= arr[SecondArrIdx]) // Element of 1st Half is compared with 2nd Half
+	        {
+	            mergedArr[mergedArrIdx++] = arr[firstArrIdx++]; // ++ happens after value assignment
+	        }
+	        else mergedArr[mergedArrIdx++] = arr[SecondArrIdx++];
+	    }
+	    while(firstArrIdx <= mid) // Copying remaining values in 1st half
+	    {
+	        mergedArr[mergedArrIdx++] = arr[firstArrIdx++];
+	    }
+	    
+	    while(SecondArrIdx <= right) // Copying remaining values in 2nd half
+	    {
+	        mergedArr[mergedArrIdx++] = arr[SecondArrIdx++];
+	    }
+	    
+	    for(int i=left; i <= right; i++)    // Copying Sorted Array to the Original Array
+	    {
+	        arr[i] = mergedArr[i];
+	    }
+	}
+	
+	static void mergeSortDivide(int[] arr, int left, int right) // Divide Part
+	{
+	    if( left < right)
+	    {
+	        int mid = left + (right - left)/2;
+	        
+	        mergeSortDivide(arr, left, mid);    // Recursive call which runs till base case
+	        mergeSortDivide(arr, mid+1, right); // Second Recursive call which also runs till base case
+	        
+	        mergeSort(arr, left, mid, right); // Calling the Merge sorting method
+	    }
+	}
 	static void insertionSort(int[] arr)
 	{
 		int n = arr.length;
@@ -60,7 +103,8 @@ public class SortingAlgos
 
 		//bubbleSort(arr);
 		//selectionSort(arr);
-		insertionSort(arr);
+		//insertionSort(arr);
+		mergeSortDivide(arr, 0, arr.length - 1);
 		System.out.println("\nAfter Sorting:");
 		for(int a:arr) System.out.print(a+" ");
 	}
