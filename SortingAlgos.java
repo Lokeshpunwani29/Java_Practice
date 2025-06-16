@@ -1,5 +1,48 @@
 public class SortingAlgos
 {
+	/*
+	Quick Sort have Time Complexity in Worst Case is O(n^2) when pivot is largest
+	or smallest value still compared to better than Merge sort having Time Complexity
+	of O(nlogn) in worst case because extra memory not allocated like merge sort. 
+	*/
+	
+	static int partition(int[] arr, int low, int high)
+	{
+	    int SpaceCounterIdx = low - 1;  // Counts Space Empty to fill Smaller values
+	    int pivot = arr[high];  // Pivot is like a Centew pivot around which things evolve
+	    
+	    //pivot can be placed at low, median, random also.
+	    
+	    for(int current= low; current < high; current++)    // Ignore high as pivot is kept there
+	    {
+	        if(arr[current] < pivot)       // Value is less than pivot
+	        {
+	            SpaceCounterIdx++;         // Increased the Space Count
+	            //swap
+	            int temp = arr[SpaceCounterIdx];
+	            arr[SpaceCounterIdx] = arr[current];    // filled the current value at the empty sapce
+	            arr[current] = temp;
+	        }
+	    }
+	    SpaceCounterIdx++;                  // lowest value before Pivot Index + 1 i.e position of pivot
+	        //swap
+	        int temp = arr[SpaceCounterIdx];
+	        arr[SpaceCounterIdx] = arr[high];
+	        arr[high] = temp;
+	        return SpaceCounterIdx;         // return Pivot Index
+	}
+	
+	static void quickSort(int[] arr, int low, int high)
+	{
+	    if(low < high)
+	    {
+	        int pivotIdx = partition(arr, low, high); // Pivot Index
+	        
+	        quickSort(arr, low, pivotIdx - 1);  // Partitioned into two halfs values smaller than pivot
+	        quickSort(arr, pivotIdx + 1, high); // This half contains values higher than Pivot
+	    }
+	}
+	
 	static void mergeSort(int[] arr, int left, int mid, int right)
 	{
 	    int[] mergedArr = new int[arr.length];  // Creating temporary array in which sort values are saved
@@ -104,7 +147,8 @@ public class SortingAlgos
 		//bubbleSort(arr);
 		//selectionSort(arr);
 		//insertionSort(arr);
-		mergeSortDivide(arr, 0, arr.length - 1);
+		//mergeSortDivide(arr, 0, arr.length - 1);
+	    quickSort(arr, 0, arr.length - 1);
 		System.out.println("\nAfter Sorting:");
 		for(int a:arr) System.out.print(a+" ");
 	}
