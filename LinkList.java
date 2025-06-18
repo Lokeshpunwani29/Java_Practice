@@ -133,11 +133,13 @@ public class LinkList
 		}
 		System.out.print("NULL\n");
 		strList.add("D");
-		strList.add("E");
+		strList.add("H");
+		strList.add(2,"E");  // Can Add at Specific Index Also.
 		System.out.println(strList);
 		strList.removeFirst();
 		strList.removeLast();
 		strList.remove();                   // By Default Remove from Front side = = removeFirst 
+		strList.remove(1);                  // Can remove at Specific Index.
 		System.out.println(strList);
 		System.out.println(strList.get(1)); // Get Element from an index.
 	}
