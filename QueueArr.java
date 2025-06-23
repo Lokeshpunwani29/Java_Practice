@@ -16,7 +16,7 @@ public class Main
 	        return rear == -1;
 	    }
 	    
-	    //enqueue
+	    //enqueue O(1)
 	    static void add(int data)
 	    {
 	        if(rear == len - 1)             //  Rear should not exceed last Index of Array
@@ -28,7 +28,7 @@ public class Main
 	        arr[rear] = data;               // Adding data to the New rear
 	    }
 	    
-	    //dequeue
+	    //dequeue O(n)
 	    static int remove()
 	    {
 	        if(isEmpty())
@@ -46,7 +46,7 @@ public class Main
 	        rear--;                         // New Rear Index after pushing back
 	        return front;
 	    }
-	    
+	    // peek O(1)
 	    static int peek()
 	    {
 	        if(isEmpty())
