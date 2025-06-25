@@ -125,6 +125,18 @@ class binaryTree
 	    int rightSum = sumOfNodes(root.right);
 	    return leftSum + rightSum + root.data;  // root.data is doing sum in return which is recursively passed to
 	}                                           // left sum and right sum
+	
+	int calcHeight(Node root) // Height of Tree from Root to Leaf Node
+	{
+	    if(root == null)
+	    {
+	        return 0;
+	    }
+	    int leftHeight = calcHeight(root.left);
+	    int rightHeight = calcHeight(root.right);
+	    int height = Math.max(leftHeight, rightHeight) + 1; // +1 for Level of Root Node which is returning
+	    return height;                                      // value in initial phase not leftHeight either rightHeight
+	}
 }
 public class Main
 {
@@ -144,5 +156,7 @@ public class Main
 		System.out.println("Count of Nodes is "+tree.countOfNodes(root));
 		System.out.println();
 		System.out.println("Sum of Nodes is "+tree.sumOfNodes(root));
+		System.out.println();
+		System.out.println("Height of Tree is "+tree.calcHeight(root));
 	}
 }
